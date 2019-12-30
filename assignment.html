@@ -18,12 +18,12 @@
   </form>
   <p id="errMsg"></p>
   <script type="text/javascript">
-    let btn = document.getElementById('btn');
+    const btn = document.getElementById('btn');
     btn.addEventListener('click' , () => {
-      let errMsg = document.getElementById('errMsg');
+      const errMsg = document.getElementById('errMsg');
       if(form.fizz.value === "" || form.buzz.value === ""){
         errMsg.innerHTML = "<p>入力フォームが空です</p>";
-      }else if(isNaN(Number(form.fizz.value)) || isNaN(!Number(form.buzz.value))){
+      }else if(isNaN(Number(form.fizz.value)) || isNaN(Number(form.buzz.value))){
         errMsg.innerHTML = "<p>数字を入力してください</p>";
       } else if( !Number.isInteger(Number(form.fizz.value)) && !Number.isInteger(Number(form.buzz.value))){
         errMsg.innerHTML = "<p>整数を入力をしてください</p>";
@@ -32,41 +32,34 @@
       }
     });
  
-    let calcu = () =>{
+    const calcu = () =>{
         
         let fizzNum = Number(form.fizz.value);
         let buzzNum = Number(form.buzz.value);
-        let fizzAddend = Number(form.fizz.value);
-        let buzzAddend = Number(form.buzz.value);//addend:足す数という意味
-        let ul = document.createElement('ul');
+        const fizzAddend = Number(form.fizz.value);
+        const buzzAddend = Number(form.buzz.value);//addend:足す数という意味
+        const ul = document.createElement('ul');
 
-        while(fizzNum < 100){
-          if(fizzNum > 100 || buzzNum > 100){
-            
-            break;
-          }
+        while(fizzNum < 100 || buzzNum < 100){
+          const li = document.createElement('li');
+
           if(fizzNum < buzzNum){
-            console.log(`${fizzNum}Fizz`);
-            let li = document.createElement('li');
+            console.log(`${fizzNum}Fizz`);            
             li.textContent = `${fizzNum}Fizz`
-            ul.appendChild(li);
             fizzNum += fizzAddend;
           } else if(buzzNum < fizzNum){
             console.log(`${buzzNum}Buzz`);
-            let li = document.createElement('li');
             li.textContent = `${buzzNum}Buzz`
-            ul.appendChild(li);
             buzzNum += buzzAddend;
           } else if(buzzNum === fizzNum){
             console.log(`${fizzNum}FizzBuzz`);
-            let li = document.createElement('li');
             li.textContent = `${fizzNum}FizzBuzz`;
-            ul.appendChild(li);
             fizzNum += fizzAddend;
             buzzNum += buzzAddend; 
           } 
-          document.body.appendChild(ul);
+          ul.appendChild(li);
         }
+      document.body.appendChild(ul);
     }
   </script>
 </body>
